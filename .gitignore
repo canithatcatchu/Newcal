@@ -451,3 +451,256 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         client.disconnect();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+package com.example.ntubimd.myapplication;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    TextView tv;
+
+
+    Button bt_0,bt_1,bt_2,bt_3,bt_4,bt_5,bt_6,bt_7,bt_8,bt_9,bt_plus,bt_minus,bt_times,bt_divided,bt_dot,bt_c,bt_ac,bt_is;
+
+    double total = 0;
+    String count ;
+    double scratch = 0;
+    boolean dot = false;
+   // boolean plus = false;
+   // boolean divided = false;
+   // boolean minus = false;
+   // boolean times = false;
+   // boolean is =false;
+   // boolean c= false;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        tv = (TextView) findViewById(R.id.textView);
+
+        bt_0 = (Button) findViewById(R.id.button15);
+        bt_1 = (Button) findViewById(R.id.button6);
+        bt_2 = (Button) findViewById(R.id.button7);
+        bt_3 = (Button) findViewById(R.id.button8);
+        bt_4 = (Button) findViewById(R.id.button9);
+        bt_5 = (Button) findViewById(R.id.button10);
+        bt_6 = (Button) findViewById(R.id.button11);
+        bt_7 = (Button) findViewById(R.id.button12);
+        bt_8 = (Button) findViewById(R.id.button13);
+        bt_9 = (Button) findViewById(R.id.button14);
+        bt_plus = (Button) findViewById(R.id.button18);
+        bt_minus = (Button) findViewById(R.id.button19);
+        bt_times = (Button) findViewById(R.id.button20);
+        bt_divided = (Button) findViewById(R.id.button21);
+        bt_dot = (Button) findViewById(R.id.button22);
+        bt_c = (Button) findViewById(R.id.button17);
+        bt_ac = (Button) findViewById(R.id.button16);
+        bt_is = (Button) findViewById(R.id.button24);
+
+
+        bt_0.setOnClickListener(this);
+        bt_1.setOnClickListener(this);
+        bt_2.setOnClickListener(this);
+        bt_3.setOnClickListener(this);
+        bt_4.setOnClickListener(this);
+        bt_5.setOnClickListener(this);
+        bt_6.setOnClickListener(this);
+        bt_7.setOnClickListener(this);
+        bt_8.setOnClickListener(this);
+        bt_9.setOnClickListener(this);
+        bt_plus.setOnClickListener(this);
+        bt_minus.setOnClickListener(this);
+        bt_times.setOnClickListener(this);
+        bt_divided.setOnClickListener(this);
+        bt_dot.setOnClickListener(this);
+        bt_c.setOnClickListener(this);
+        bt_ac.setOnClickListener(this);
+        bt_is.setOnClickListener(this);
+
+
+
+
+        tv.setText("");
+
+    }
+
+
+@Override
+public void onClick(View view) {
+
+    int id = view.getId();
+
+    switch (id) {
+        case R.id.button15:
+            tv.setText(tv.getText().toString() + "0");
+            break;
+        case R.id.button6:
+            tv.setText(tv.getText().toString() + "1");
+            break;
+        case R.id.button7:
+            tv.setText(tv.getText().toString() + "2");
+            break;
+        case R.id.button8:
+            tv.setText(tv.getText().toString() + "3");
+            break;
+        case R.id.button9:
+            tv.setText(tv.getText().toString() + "4");
+            break;
+        case R.id.button10:
+            tv.setText(tv.getText().toString() + "5");
+            break;
+        case R.id.button11:
+            tv.setText(tv.getText().toString() + "6");
+            break;
+        case R.id.button12:
+            tv.setText(tv.getText().toString() + "7");
+            break;
+        case R.id.button13:
+            tv.setText(tv.getText().toString() + "8");
+            break;
+        case R.id.button14:
+            tv.setText(tv.getText().toString() + "9");
+            break;
+        case R.id.button18:
+            count = "plus";
+
+            if (tv.getText().toString().equals("")) {
+                break;
+            } else {
+                scratch = Double.parseDouble(tv.getText().toString());
+                tv.setText("");
+            }
+            dot = false;
+            break;
+
+        case R.id.button19:
+            count = "minus";
+
+            if (tv.getText().toString().equals("")) {
+                break;
+            } else {
+                scratch = Double.parseDouble(tv.getText().toString());
+                tv.setText("");
+            }
+            dot = false;
+            break;
+
+        case R.id.button20:
+            count = "times";
+
+            if (tv.getText().toString().equals("")) {
+                break;
+            } else {
+                scratch = Double.parseDouble(tv.getText().toString());
+                tv.setText("");
+            }
+            dot = false;
+            break;
+
+        case R.id.button21:
+            count = "divided";
+            if (tv.getText().toString().equals("")) {
+                break;
+            } else {
+                scratch = Double.parseDouble(tv.getText().toString());
+                tv.setText("");
+            }
+            dot = false;
+            break;
+
+        case R.id.button22:
+
+            if (dot == false) {
+                tv.setText(tv.getText().toString() + ".");
+                if (tv.getText().toString().equals(".") || tv.getText().toString().equals("0")) {
+                    tv.setText("0.");
+                }
+
+            }
+            dot = true;
+            break;
+        case R.id.button16:
+
+            scratch = 0;
+            count = null;
+            tv.setText("");
+            dot = false;
+
+            break;
+        case R.id.button17:
+            if (tv.getText().toString().equals("")) {
+                break;
+            } else {
+                tv.setText(tv.getText().toString().substring(0, tv.getText().toString().length() - 1));
+
+            }
+            break;
+
+        case R.id.button24:
+
+
+            switch (count) {
+                case "plus":
+                    if (tv.getText().toString().equals("")) {
+                        total = scratch;
+                    } else {
+                        total = scratch + Double.parseDouble(tv.getText().toString());
+
+                        tv.setText(total + "");
+                    }
+                    break;
+                case "minus":
+                    if (tv.getText().toString().equals("")) {
+                        total = scratch;
+                    } else {
+                        total = scratch - Double.parseDouble(tv.getText().toString());
+
+                        tv.setText(total + "");
+                    }
+                    break;
+                case "times":
+                    if (tv.getText().toString().equals("")) {
+                        total = scratch;
+                    } else {
+                        total = scratch * Double.parseDouble(tv.getText().toString());
+
+                        tv.setText(total + "");
+                    }
+                    break;
+                case "divided":
+                    if (tv.getText().toString().equals("")) {
+                        total = scratch;
+                    } else {
+                        total = scratch / Double.parseDouble(tv.getText().toString());
+
+                        tv.setText(total + "");
+                    }
+                default: break;
+            }
+            dot = true;
+            break;
+        }
+    }
+
+}
+
+
+
